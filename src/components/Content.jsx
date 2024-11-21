@@ -1,6 +1,6 @@
 import styles from "./Content.module.scss";
 import Recipe from "./Recipe";
-import { data } from "../data/recipes"
+import { data } from "../data/recipes";
 
 function Content() {
   const recipes = data;
@@ -10,8 +10,8 @@ function Content() {
       <h1 className="my-30">Discover our new recipes</h1>
       <div className={`card p-20 ${styles.contentCard}`}>
         <div className={styles.grid}>
-          { recipes.map( (r) => (
-            <Recipe key={r._id} title={ r.title } image={ r.image }/>
+          {recipes.map((r) => (
+            <Recipe key={r._id} title={r.title} image={r.image} />
           ))}
         </div>
       </div>
