@@ -24,7 +24,7 @@ function Homepage() {
           setRecipes((x) =>
             Array.isArray(newRecipes)
               ? [...x, ...newRecipes]
-              : [...x, ...newRecipes]
+              : [...x, newRecipes]
           );
         }
       } catch (e) {
