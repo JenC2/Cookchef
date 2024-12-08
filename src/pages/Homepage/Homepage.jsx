@@ -1,8 +1,8 @@
-import Loading from "../../components/Loading/Loading";
 import { ApiContext } from "../../context/ApiContext";
+import { useContext, useEffect, useState } from "react";
+import Loading from "../../components/Loading/Loading";
 import styles from "./Homepage.module.scss";
 import Recipe from "./components/Recipe/Recipe";
-import { useContext, useEffect, useState } from "react";
 
 function Homepage() {
   const [recipes, setRecipes] = useState([]);
@@ -31,6 +31,12 @@ function Homepage() {
     fetchRecipes();
     return () => (cancel = true);
   }, []);
+
+  function updateRecipe(updatedRecipe) {
+    setRecipes(
+      recipes.map((r) => (r._id === updatedRecipe._id ? updatedRecipe : r))
+    );
+  }
 
   function handleInput(e) {
     const filter = e.target.value;
@@ -61,7 +67,11 @@ function Homepage() {
             {recipes
               .filter((r) => r.title.toLowerCase().startsWith(filter))
               .map((r) => (
-                <Recipe key={r._id} title={r.title} image={r.image} />
+                <Recipe
+                  key={r._id}
+                  recipe={r}
+                  toggleLikedRecipe={updateRecipe}
+                />
               ))}
           </div>
         )}
